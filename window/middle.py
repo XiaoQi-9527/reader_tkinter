@@ -1,4 +1,4 @@
-from window.public import set_size, chapter
+from window.public import set_size, chapter, show_context
 from window.read import read_context
 import tkinter as tk
 
@@ -48,6 +48,8 @@ def mid(window, **kwargs):
     writer = '佚名' if writer is None else writer
     # # 封面保存路径
     # title_path = result.get('封面')
+    # 背景色
+    bg_color = result.get('bg')
 
     # # 封面控件
     # group1 = tk.LabelFrame(window, text="", padx=0, pady=0, width=188, height=248, relief='groove')
@@ -74,12 +76,29 @@ def mid(window, **kwargs):
     lab_3 = tk.Label(window, text='简介：', font=('黑体', 12), fg='black')
     lab_3.place(x=10, y=90)
     mid_controls[lab_3] = {'x': 10, 'y': 90}
-    # 简介
-    mid_text = tk.StringVar()
-    mid_text.set(summary)
-    mes_1 = tk.Message(window, textvariable=mid_text, font=('宋体', 11), fg='black', width=320, justify='left')
-    mes_1.place(x=50, y=92)
-    mid_controls[mes_1] = {'x': 50, 'y': 90}
+    # # 简介
+    # mid_text = tk.StringVar()
+    # mid_text.set(summary)
+    # mes_1 = tk.Message(window, textvariable=mid_text, font=('宋体', 11), fg='black', width=320, justify='left')
+    # mes_1.place(x=50, y=92)
+    # mid_controls[mes_1] = {'x': 50, 'y': 90}
+
+    # 竖直滚动条
+    s1 = tk.Scrollbar(window, orient='vertical', width=20)
+    s1.place(x=340, y=93, height=155)
+    mid_controls[s1] = {'x': 380, 'y': 93}
+
+    # 文本框设置
+    t1 = tk.Text(window, width=40, height=12, wrap='char', relief='flat', bg=bg_color, undo=True)  # state='disabled'
+    t1.place(x=50, y=93)
+    mid_controls[t1] = {'x': 50, 'y': 93}
+
+    # 绑定文本框与滚动条
+    t1.config(yscrollcommand=s1.set)
+    s1.config(command=t1.yview)
+
+    # 正文显示
+    show_context(t1, summary, spacing1=0, spacing2=5, spacing3=10)
 
     but_1 = tk.Button(window, text='最新章节', font=('宋体', 10), fg='black', command=last, relief='ridge')
     but_1.place(x=10, y=270)

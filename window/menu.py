@@ -9,7 +9,7 @@ def menu(window):
         set_title(window, "笔趣阁")
 
     def none():
-        set_icon(window, icon='./image/none.ico')
+        set_icon(window, icon='window/image/none.ico')
         set_title(window)
 
     def more():

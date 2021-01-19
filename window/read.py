@@ -1,35 +1,9 @@
-from window.public import set_size, chapter, set_title
+from window.public import set_size, chapter, set_title, show_context
 import tkinter as tk
 import tkinter.messagebox
 
 # 章节名
 context_name = ''
-
-
-def show_context(obj, text, font=('宋体', 11), spacing1=15, spacing2=10):
-    """
-    正文展示
-    :param obj: 控件对象
-    :param text: 正文内容
-    :param font: 字体
-    :param spacing1: 段间距
-    :param spacing2: 行间距
-    """
-    # 解除内容锁定
-    obj.configure(state='normal')
-    try:
-        # 清理之前的内容
-        obj.edit_undo()
-    except:
-        pass
-    # 插入内容
-    obj.insert("insert", text)
-    # 标记正文, '1.0': 第一行第一列, '100000.1000': 最后一行最后一列, 超过计数即为最后
-    obj.tag_add('line1', '1.0', '100000.1000')
-    # 样式, 每一段的段首缩进
-    obj.tag_config('line1', lmargin1=32, font=font, spacing1=spacing1, spacing2=spacing2)
-    # 锁定内容
-    obj.configure(state='disabled')
 
 
 def read_context(window, **kwargs):
