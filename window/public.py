@@ -11,6 +11,7 @@ def search_info(name, title='笔趣阁'):
 
     # result = json.loads(result)
     # print(result.get('result'))
+    # print(result)
     return result
 
 
@@ -46,7 +47,7 @@ def set_icon(window, icon=None):
     window.iconbitmap(icon)
 
 
-def show_context(obj, text, font=('宋体', 11), spacing1=15, spacing2=10, spacing3=0):
+def show_context(obj, text, font=('宋体', 11), spacing1=15, spacing2=15, spacing3=10):
     """
     正文展示
     :param obj: 控件对象
@@ -71,3 +72,23 @@ def show_context(obj, text, font=('宋体', 11), spacing1=15, spacing2=10, spaci
     obj.tag_config('line1', lmargin1=32, font=font, spacing1=spacing1, spacing2=spacing2, spacing3=spacing3)
     # 锁定内容
     obj.configure(state='disabled')
+
+
+def get_dirs(chapters, page_num):
+    """
+    章节分页
+    :param chapters: 总章节列表
+    :param page_num:
+    """
+    all_page = []
+    pages = []
+    for index, chapter in enumerate(chapters):
+        pages.append(chapter)
+        if (index + 1) % 20 == 0:
+            all_page.append(pages)
+            pages = []
+            continue
+        if len(all_page) == page_num - 1:
+            all_page.append(pages)
+    # print(all_page)
+    return all_page

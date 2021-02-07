@@ -14,6 +14,8 @@ def read_context(window, **kwargs):
         返回搜索结果界面
         """
         from window.middle import mid
+        canvas = tk.Canvas(window, width=400, height=320)
+        canvas.place(x=0, y=60)
         set_title(window, result.get('书源'))
         mid(window, result=result, sc=search_controls)
         for c in read_controls.keys():
@@ -105,7 +107,10 @@ def read_context(window, **kwargs):
     # 首次进入章节名
     context_name = kwargs.get('chapter_name')
     # 章节缓存
-    cache = result.get('缓存').get(kwargs.get('show'))
+    if kwargs.get('show') is None:
+        cache = kwargs.get('cache')
+    else:
+        cache = result.get('缓存').get(kwargs.get('show'))
     # 章节信息
     book_info = result.get('章节信息')
     # 章节名信息
@@ -120,7 +125,7 @@ def read_context(window, **kwargs):
     group.place(x=5, y=5)
     read_controls[group] = {'x': 5, 'y': 5}
 
-    but_1 = tk.Button(group, text='返回搜索', font=('黑体', 11), fg='black', command=back, relief='ridge')
+    but_1 = tk.Button(group, text='返回搜索', font=('黑体', 11), fg='black', command=back, relief='groove', cursor='hand2')
     but_1.place(x=300, y=5)
     read_controls[but_1] = {'x': 300, 'y': 5}
 
@@ -134,7 +139,7 @@ def read_context(window, **kwargs):
     lab_4.place(x=45, y=7)
     read_controls[lab_4] = {'x': 45, 'y': 7}
 
-    but_2 = tk.Button(group, text='上一章', font=('黑体', 11), fg='black', command=prev, relief='ridge')
+    but_2 = tk.Button(group, text='上一章', font=('黑体', 11), fg='black', command=prev, relief='groove', cursor='hand2')
     but_2.place(x=0, y=35)
     read_controls[but_2] = {'x': 0, 'y': 35}
 
@@ -144,11 +149,11 @@ def read_context(window, **kwargs):
     ent_1.place(x=160, y=39)
     read_controls[ent_1] = {'x': 160, 'y': 39}
 
-    but_3 = tk.Button(group, text='跳转', font=('黑体', 11), fg='black', command=jump, relief='ridge')
+    but_3 = tk.Button(group, text='跳转', font=('黑体', 11), fg='black', command=jump, relief='groove', cursor='hand2')
     but_3.place(x=215, y=35)
     read_controls[but_3] = {'x': 215, 'y': 35}
 
-    but_4 = tk.Button(group, text='下一章', font=('黑体', 11), fg='black', command=next, relief='ridge')
+    but_4 = tk.Button(group, text='下一章', font=('黑体', 11), fg='black', command=next, relief='groove', cursor='hand2')
     but_4.place(x=316, y=35)
     read_controls[but_4] = {'x': 316, 'y': 35}
 

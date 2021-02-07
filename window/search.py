@@ -47,9 +47,9 @@ def search(window, **kwargs):
     ent_1 = tk.Entry(group1, textvariable=book, font=('黑体', 15), fg='black', width=20)
     ent_1.place(x=60, y=13)
     # 添加按钮, 样式: flat, groove, raised, ridge, solid, or sunken
-    but_1 = tk.Button(group1, text='提交', font=('宋体', 12), fg='black', command=submit, relief='ridge')
+    but_1 = tk.Button(group1, text='提交', font=('宋体', 12), fg='black', command=submit, relief='groove', cursor='hand2')
     but_1.place(x=280, y=10)
-    but_2 = tk.Button(group1, text='退出', font=('宋体', 12), fg='black', command=window.quit, relief='ridge')
+    but_2 = tk.Button(group1, text='退出', font=('宋体', 12), fg='black', command=window.quit, relief='groove', cursor='hand2')
     but_2.place(x=330, y=10)
     # 控件列表
     search_controls = {group1: {'x': 5, 'y': 5},
