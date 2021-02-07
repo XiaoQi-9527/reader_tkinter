@@ -3,7 +3,7 @@ from window.read import read_context
 import tkinter as tk
 import tkinter.messagebox
 
-page_num, text = 1, ''
+page_num, text, site_dict = 1, '', {}
 
 
 def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc=None, dc=None):
@@ -20,6 +20,8 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     :param mc:
     :param dc:
     """
+    global  site_dict
+
     def event0():
         global text
         text = button0['text']
@@ -181,8 +183,8 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
             c.destroy()
     chapters = chapters[page-1]
 
-    canvas = obj.Canvas(group, width=360, height=470)
-    canvas.place(x=5, y=5)
+    # canvas = obj.Canvas(group, width=360, height=470)
+    # canvas.place(x=5, y=5)
 
     button_list = []
 
@@ -257,10 +259,11 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
         y_site = 5 + index * 24
         button.configure(font=('黑体', 10), fg='black', relief='flat', cursor='hand2')
         button.place(x=10, y=y_site)
+        site_dict[button] = {'x': 10, 'y': y_site}
 
 
 def show_director(window, **kwargs):
-    global page_num, text
+    global page_num, text, site_dict
 
     def back():
         """
@@ -273,6 +276,8 @@ def show_director(window, **kwargs):
             c.destroy()
         for c in search_controls.keys():
             c.place(**search_controls.get(c))
+        for c in site_dict.keys():
+            c.destroy()
 
     def prev():
         """上一页"""
@@ -282,6 +287,8 @@ def show_director(window, **kwargs):
             return
         page_num -= 1
         now_page.set(f'第 {page_num} 页, 共 {pages} 页')
+        for c in site_dict.keys():
+            c.destroy()
         show_dirs(window, result, chapters, page_num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
 
     def jump():
@@ -303,6 +310,8 @@ def show_director(window, **kwargs):
             num = pages
             tkinter.messagebox.showwarning(title='提示', message='数值过大，即将转到最后一页！')
         number.set('')
+        for c in site_dict.keys():
+            c.destroy()
         show_dirs(window, result, chapters, num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
 
     def next():
@@ -313,6 +322,8 @@ def show_director(window, **kwargs):
             return
         page_num += 1
         now_page.set(f'第 {page_num} 页, 共 {pages} 页')
+        for c in site_dict.keys():
+            c.destroy()
         show_dirs(window, result, chapters, page_num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
     # 控件列表
     dir_controls = {}

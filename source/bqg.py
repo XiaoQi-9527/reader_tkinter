@@ -1,16 +1,17 @@
+from source.config import user_agents
 from urllib import parse
 from time import sleep
 from bs4 import BeautifulSoup
 from utils.thread import MyThread
 import requests
+import random
 import os
 
 # 网站链接
-bqg_url = "http://www.biquge.info/"
+bqg_url = "http://www.loubiqu.com/"
 # 设置请求头
-headers = {'referer': 'http://www.biquge.info/',
-           'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                         'Chrome/87.0.4280.88 Safari/537.36'
+headers = {'referer': bqg_url,
+           'user-agent': user_agents[random.randint(0, len(user_agents) - 1)]
            }
 # 缓存目录
 cache_path = './cache/'
