@@ -1,18 +1,16 @@
-from source.config import user_agents
+from source.config import headers
 from urllib import parse
 from time import sleep
 from bs4 import BeautifulSoup
 from utils.thread import MyThread
 import requests
-import random
 import os
 
 # 网站链接
 bqg_url = "http://www.loubiqu.com/"
 # 设置请求头
-headers = {'referer': bqg_url,
-           'user-agent': user_agents[random.randint(0, len(user_agents) - 1)]
-           }
+headers['referer'] = bqg_url
+
 # 缓存目录
 cache_path = './cache/'
 img_path = 'window/cache'
@@ -25,7 +23,7 @@ def get_soup(url=None):
     :param url: 链接
     """
     sleep(1)
-    global headers
+    # global headers
 
     response = requests.get(url=url, headers=headers, timeout=3).content
     return BeautifulSoup(response, 'html.parser')

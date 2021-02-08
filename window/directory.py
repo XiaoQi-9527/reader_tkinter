@@ -20,7 +20,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     :param mc:
     :param dc:
     """
-    global  site_dict
+    global site_dict
 
     def event0():
         global text
@@ -181,6 +181,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
+
     chapters = chapters[page-1]
 
     # canvas = obj.Canvas(group, width=360, height=470)
@@ -310,6 +311,8 @@ def show_director(window, **kwargs):
             num = pages
             tkinter.messagebox.showwarning(title='提示', message='数值过大，即将转到最后一页！')
         number.set('')
+        page_num = num
+        now_page.set(f'第 {page_num} 页, 共 {pages} 页')
         for c in site_dict.keys():
             c.destroy()
         show_dirs(window, result, chapters, num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
