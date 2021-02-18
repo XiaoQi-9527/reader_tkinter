@@ -1,4 +1,4 @@
-from source.bqg import get_book, get_chapter
+from source.all import get_book, get_one_chapter
 # import json
 
 
@@ -6,21 +6,20 @@ def search_info(name, title='笔趣阁'):
     """
     修改图标, 根据不同书源获取书本
     """
-    if title == '笔趣阁':
-        result = get_book(name)
-
+    result = get_book(name, site=title)
     # result = json.loads(result)
     # print(result.get('result'))
     # print(result)
     return result
 
 
-def chapter(url):
+def chapter(url, site):
     """
     根据链接获取正文内容
     :param url: 链接
+    :param site
     """
-    return get_chapter(url)
+    return get_one_chapter(url, site)
 
 
 def set_size(window, size):

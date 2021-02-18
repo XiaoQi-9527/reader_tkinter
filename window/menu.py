@@ -1,4 +1,4 @@
-from window.public import set_title,set_icon
+from window.public import set_title, set_icon
 import tkinter as tk
 import tkinter.messagebox
 
@@ -7,6 +7,10 @@ def menu(window):
     def bqg():
         set_icon(window)
         set_title(window, "笔趣阁")
+
+    def qd():
+        set_icon(window, icon='window/image/qd.ico')
+        set_title(window, "起点")
 
     def none():
         set_icon(window, icon='window/image/none.ico')
@@ -25,6 +29,7 @@ def menu(window):
 
     # 加入小菜单
     source_menu.add_command(label="笔趣阁", command=bqg)
+    source_menu.add_command(label="起点", command=qd)
     source_menu.add_command(label="空", command=none)
 
     # 下拉菜单的分隔线

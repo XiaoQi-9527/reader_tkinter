@@ -9,7 +9,8 @@ def mid(window, **kwargs):
         """
         打开最后一章
         """
-        read_context(window, result=result, chapter_name=new_cha, show='最后一章', sc=search_controls, mc=mid_controls)
+        cha = chapter(chapter_info.get(new_cha), title)
+        read_context(window, result=result, chapter_name=new_cha, cache=cha, sc=search_controls, mc=mid_controls)
         for c in mid_controls.keys():
             c.destroy()
         for c in search_controls.keys():
@@ -19,7 +20,7 @@ def mid(window, **kwargs):
         """
         目录
         """
-        show_director(window, result=result, sc=search_controls, mc=mid_controls)
+        show_director(window, result=result, title=title, sc=search_controls, mc=mid_controls)
         for c in mid_controls.keys():
             c.destroy()
         for c in search_controls.keys():
@@ -29,7 +30,8 @@ def mid(window, **kwargs):
         """
         打开第一章
         """
-        read_context(window, result=result, chapter_name=fir_cha, show='第一章', sc=search_controls, mc=mid_controls)
+        cha = chapter(chapter_info.get(fir_cha), title)
+        read_context(window, result=result, chapter_name=fir_cha, cache=cha, sc=search_controls, mc=mid_controls)
         for c in mid_controls.keys():
             c.destroy()
         for c in search_controls.keys():
@@ -37,7 +39,8 @@ def mid(window, **kwargs):
     # 控件列表
     mid_controls = {}
     search_controls = kwargs.get('sc')
-
+    # 获取当前窗口标题
+    title = window.title()
     # 设置大小
     set_size(window, '400x320')
     # 接收数据
@@ -45,6 +48,8 @@ def mid(window, **kwargs):
     # 数据判断, 简介
     summary = result.get('简介')
     summary = '加载失败' if summary is None else summary
+    # 章节信息
+    chapter_info = result.get('章节信息')
     # 第一章, 最新章节名
     cache = result.get('章节名信息')
     # # 获取第一章与最后一章

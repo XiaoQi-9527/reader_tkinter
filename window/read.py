@@ -49,7 +49,7 @@ def read_context(window, **kwargs):
         # 获取本章的链接
         url = book_info.get(context_name)
         # 获取正文内容
-        text = chapter(url)
+        text = chapter(url, title)
         # 展示正文内容
         show_context(t1, text)
 
@@ -65,7 +65,7 @@ def read_context(window, **kwargs):
         context_name = chapters[index - 1]
         chap_text.set(context_name)
         url = book_info.get(context_name)
-        text = chapter(url)
+        text = chapter(url, title)
         show_context(t1, text)
 
     def jump():
@@ -89,7 +89,7 @@ def read_context(window, **kwargs):
         context_name = chapters[num]
         chap_text.set(context_name)
         url = book_info.get(context_name)
-        text = chapter(url)
+        text = chapter(url, title)
         number.set('')
         show_context(t1, text)
 
@@ -104,13 +104,12 @@ def read_context(window, **kwargs):
     bg_color = result.get('bg')
     # 书名
     name = result.get('书名')
+    # 书源
+    title = result.get('书源')
     # 首次进入章节名
     context_name = kwargs.get('chapter_name')
-    # 章节缓存
-    if kwargs.get('show') is None:
-        cache = kwargs.get('cache')
-    else:
-        cache = result.get('缓存').get(kwargs.get('show'))
+    # 章节内容
+    cache = kwargs.get('cache')
     # 章节信息
     book_info = result.get('章节信息')
     # 章节名信息

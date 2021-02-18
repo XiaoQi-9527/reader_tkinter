@@ -6,7 +6,7 @@ import tkinter.messagebox
 page_num, text, site_dict = 1, '', {}
 
 
-def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc=None, dc=None):
+def show_dirs(window, result, chapters, page, obj, group, book_info, title=None, sc=None, mc=None, dc=None):
     """
     展示章节
     :param window:
@@ -16,6 +16,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     :param obj:
     :param group:
     :param book_info
+    :param title
     :param sc:
     :param mc:
     :param dc:
@@ -25,7 +26,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event0():
         global text
         text = button0['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -33,7 +34,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event1():
         global text
         text = button1['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -41,7 +42,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event2():
         global text
         text = button2['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -49,7 +50,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event3():
         global text
         text = button3['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -57,7 +58,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event4():
         global text
         text = button4['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -65,7 +66,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event5():
         global text
         text = button5['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -73,7 +74,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event6():
         global text
         text = button6['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -81,7 +82,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event7():
         global text
         text = button7['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -89,7 +90,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event8():
         global text
         text = button8['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -97,7 +98,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event9():
         global text
         text = button9['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -105,7 +106,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event10():
         global text
         text = button10['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -113,7 +114,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event11():
         global text
         text = button11['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -121,7 +122,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event12():
         global text
         text = button12['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -129,7 +130,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event13():
         global text
         text = button13['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -137,7 +138,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event14():
         global text
         text = button14['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -145,7 +146,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event15():
         global text
         text = button15['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -153,7 +154,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event16():
         global text
         text = button16['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -161,7 +162,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event17():
         global text
         text = button17['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -169,7 +170,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event18():
         global text
         text = button18['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -177,7 +178,7 @@ def show_dirs(window, result, chapters, page, obj, group, book_info, sc=None, mc
     def event19():
         global text
         text = button19['text']
-        context = chapter(book_info.get(text))
+        context = chapter(book_info.get(text), title)
         read_context(window, result=result, chapter_name=text, cache=context, sc=sc, mc=mc)
         for c in dc.keys():
             c.destroy()
@@ -290,7 +291,7 @@ def show_director(window, **kwargs):
         now_page.set(f'第 {page_num} 页, 共 {pages} 页')
         for c in site_dict.keys():
             c.destroy()
-        show_dirs(window, result, chapters, page_num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
+        show_dirs(window, result, chapters, page_num, tk, group1, book_info, title=title, sc=search_controls, mc=mid_controls, dc=dir_controls)
 
     def jump():
         """
@@ -315,7 +316,7 @@ def show_director(window, **kwargs):
         now_page.set(f'第 {page_num} 页, 共 {pages} 页')
         for c in site_dict.keys():
             c.destroy()
-        show_dirs(window, result, chapters, num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
+        show_dirs(window, result, chapters, num, tk, group1, book_info, title=title, sc=search_controls, mc=mid_controls, dc=dir_controls)
 
     def next():
         """下一页"""
@@ -327,11 +328,14 @@ def show_director(window, **kwargs):
         now_page.set(f'第 {page_num} 页, 共 {pages} 页')
         for c in site_dict.keys():
             c.destroy()
-        show_dirs(window, result, chapters, page_num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
+        show_dirs(window, result, chapters, page_num, tk, group1, book_info, title=title, sc=search_controls, mc=mid_controls, dc=dir_controls)
     # 控件列表
     dir_controls = {}
     search_controls = kwargs.get('sc')
     mid_controls = kwargs.get('mc')
+
+    # 站点
+    title = kwargs.get('title', '笔趣阁')
 
     # 接收数据
     result = kwargs.get('result')
@@ -400,6 +404,6 @@ def show_director(window, **kwargs):
     dir_controls[group1] = {'x': 10, 'y': 80}
 
     # 目录显示
-    show_dirs(window, result, chapters, page_num, tk, group1, book_info, sc=search_controls, mc=mid_controls, dc=dir_controls)
+    show_dirs(window, result, chapters, page_num, tk, group1, book_info, title=title, sc=search_controls, mc=mid_controls, dc=dir_controls)
 
 
