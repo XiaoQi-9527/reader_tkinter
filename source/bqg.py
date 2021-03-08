@@ -12,8 +12,17 @@ def get_book_info(name, site):
     # print(result.prettify())
     try:
         result1 = result.select(".odd")
+        # print(result1)
         # 书本代码
-        book_code = result1[0].select("a[href]")[0]['href']
+        # book_code = result1[0].select("a[href]")[0]['href']
+        for i in range(len(result1)):
+            try:
+                text = result1[i].select("a[href]")[0].get_text()
+                if text == name:
+                    book_code = result1[i].select("a[href]")[0]['href']
+                    # print(book_code)
+            except:
+                pass
         # 作者
         writer = result1[1].get_text()
         result2 = result.select(".even")
@@ -76,6 +85,7 @@ def get_chapter(url, site):
 
 if __name__ == '__main__':
     res = get_book_info('信息全知者', '笔趣阁')
+    # res = get_book_info('赘婿', '笔趣阁')
     # res = get_chapters_dict(res, '笔趣阁')
     # res = get_book('信息全知者', '笔趣阁')
     # test_url = 'http://www.biquge.info//82_82472/23390256.html'
