@@ -21,17 +21,26 @@ def get_book_info(name, site):
                 if text == name:
                     book_code = result1[i].select("a[href]")[0]['href']
                     # print(book_code)
+                    # 作者
+                    writer = result1[i + 1].get_text()
                     break
             except:
                 pass
         # 作者
-        writer = result1[1].get_text()
+        # writer = result1[1].get_text()
         result2 = result.select(".even")
+        # print(result2)
         # 最新章节
-        new_chapter = result2[0].select("a")[0].get_text()
-        # 状态
-        status = result2[-1].get_text()
-
+        for i in range(len(result2)):
+            try:
+                href = result2[i].select("a[href]")[0]['href']
+                if book_code in href:
+                    new_chapter = result2[i].select("a")[0].get_text()
+                    # 状态
+                    status = result2[i + 2].get_text()
+                    break
+            except:
+                pass
         return {'msg': 200, '书源': site, '书名': name, '作者': writer, '状态': status,
                 '书本链接': url + book_code, '最新章节': new_chapter}
 
@@ -85,8 +94,8 @@ def get_chapter(url, site):
 
 
 if __name__ == '__main__':
-    res = get_book_info('信息全知者', '笔趣阁')
-    # res = get_book_info('赘婿', '笔趣阁')
+    # res = get_book_info('信息全知者', '笔趣阁')
+    res = get_book_info('赘婿', '笔趣阁')
     # res = get_chapters_dict(res, '笔趣阁')
     # res = get_book('信息全知者', '笔趣阁')
     # test_url = 'http://www.biquge.info//82_82472/23390256.html'
