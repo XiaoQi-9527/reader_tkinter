@@ -21,6 +21,7 @@ def get_book_info(name, site):
                 if text == name:
                     book_code = result1[i].select("a[href]")[0]['href']
                     # print(book_code)
+                    break
             except:
                 pass
         # 作者
