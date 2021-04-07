@@ -9,6 +9,8 @@ def main():
     root = tk.Tk()
     # 设置大小
     set_size(root, '400x100+100+100')
+    # 禁止拉伸窗口
+    root.resizable(width=False, height=False)
     # 获取默认背景色
     bg = "#%x%x%x" % root.winfo_rgb(root.cget('background'))
     # 设置窗口标题
